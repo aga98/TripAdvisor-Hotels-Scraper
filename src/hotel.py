@@ -1,5 +1,9 @@
 class Hotel:
     def __init__(self, name):
+        self.price = None
+        self.price_range = None
+        self.rooms = None
+        self.zone = None
         self.swimming_pool = None
         self.longitude = None
         self.bar = None
@@ -25,27 +29,33 @@ class Hotel:
         self.name = name
 
     def __str__(self):
-        s = ('Name: ' + self.name + '\n'
-             + 'stars: ' + str(self.stars) + '\n'
-             + 'score: ' + str(self.score) + '\n'
-             + 'ranking_in_city: ' + str(self.ranking_in_city) + '\n'
-             + 'num_opinions: ' + str(self.num_opinions) + '\n'
-             + 'num_opinions_excellent: ' + str(self.num_opinions_excellent) + '\n'
-             + 'num_opinions_good: ' + str(self.num_opinions_good) + '\n'
-             + 'num_opinions_normal: ' + str(self.num_opinions_normal) + '\n'
-             + 'num_opinions_bad: ' + str(self.num_opinions_bad) + '\n'
-             + 'num_opinions_awful: ' + str(self.num_opinions_awful) + '\n'
-             + 'num_qa: ' + str(self.num_qa) + '\n'
-             + 'nearby_restaurants: ' + str(self.nearby_restaurants) + '\n'
-             + 'nearby_attractions: ' + str(self.nearby_attractions) + '\n'
-             + 'latitude: ' + str(self.latitude) + '\n'
-             + 'longitude: ' + str(self.longitude) + '\n'
-             + 'swimming_pool: ' + str(self.swimming_pool) + '\n'
-             + 'bar: ' + str(self.bar) + '\n'
-             + 'restaurant: ' + str(self.restaurant) + '\n'
-             + 'breakfast: ' + str(self.breakfast) + '\n'
-             + 'gym: ' + str(self.gym) + '\n'
-             + 'admits_pets: ' + str(self.admits_pets) + '\n'
-             + 'air_conditioning: ' + str(self.air_conditioning) + '\n'
-             + 'date: ' + str(self.date) + '\n')
+        s = ("------------------------------------------------------------\n"
+             + 'Name: ' + self.name + '\n'
+             + 'Stars: ' + str(self.stars) + '\n'
+             + 'Score: ' + str(self.score) + '\n'
+             + 'Ranking_in_city: ' + str(self.ranking_in_city) + '\n'
+             + 'Price: ' + str(self.price) + '\n'
+             + 'Price Range: ' + str(self.price_range) + '\n'
+             + 'Num. Opinions: ' + str(self.num_opinions) + '\n'
+             + 'Num. Opinions Excellent: ' + str(self.num_opinions_excellent) + '\n'
+             + 'Num. Opinions Good: ' + str(self.num_opinions_good) + '\n'
+             + 'Num. Opinions Normal: ' + str(self.num_opinions_normal) + '\n'
+             + 'Num. Opinions Bad: ' + str(self.num_opinions_bad) + '\n'
+             + 'Num. Opinions Awful: ' + str(self.num_opinions_awful) + '\n'
+             + 'Num. QA: ' + str(self.num_qa) + '\n'
+             + 'Nearby Restaurants: ' + str(self.nearby_restaurants) + '\n'
+             + 'Nearby Attractions: ' + str(self.nearby_attractions) + '\n'
+             + 'Zone: ' + str(self.zone) + '\n'
+             + 'Latitude: ' + str(self.latitude) + '\n'
+             + 'Longitude: ' + str(self.longitude) + '\n'
+             + 'Swimming_pool: ' + str(self.swimming_pool) + '\n'
+             + 'Bar: ' + str(self.bar) + '\n'
+             + 'Restaurant: ' + str(self.restaurant) + '\n'
+             + 'Breakfast: ' + str(self.breakfast) + '\n'
+             + 'Gym: ' + str(self.gym) + '\n'
+             + 'Admits_pets: ' + str(self.admits_pets) + '\n'
+             + 'Air_conditioning: ' + str(self.air_conditioning) + '\n'
+             + 'Rooms: ' + str(self.rooms) + '\n'
+             + 'Date: ' + str(self.date) + '\n'
+             + "------------------------------------------------------------\n")
         return s
