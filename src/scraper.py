@@ -88,54 +88,54 @@ def scrape_hotel(url):
     hotel = Hotel(name)
     print(name)  # for debug
     stars = soup.select_one('._2aZlo29m')
-    hotel.stars = float(stars.get('title')[:3].replace(',', '.')) if stars is not None else None
+    hotel.stars = None if stars is None else float(stars.get('title')[:3].replace(',', '.'))
     score = soup.select_one('._3cjYfwwQ')
-    hotel.score = float(score.text.replace(',', '.')) if score is not None else None
+    hotel.score = None if score is None else float(score.text.replace(',', '.'))
     ranking_in_city = soup.select_one('.rank')
-    hotel.ranking_in_city = int(ranking_in_city.text[4:].replace('.', '')) if ranking_in_city is not None else None
+    hotel.ranking_in_city = None if ranking_in_city is None else int(ranking_in_city.text[4:].replace('.', ''))
     about = soup.select_one('._2t2gK1hs > div')
     rooms = get_about_info(about, 'número de habitaciones')
-    hotel.rooms = BeautifulSoup(rooms, 'lxml').text if rooms is not None else None
+    hotel.rooms = None if rooms is None else BeautifulSoup(rooms, 'lxml').text
     price_range = get_about_info(about, 'rango de precios')
-    hotel.price_range = BeautifulSoup(price_range, 'lxml').text.split('(')[0].strip()
+    hotel.price_range = None if price_range is None else BeautifulSoup(price_range, 'lxml').text.split('(')[0].strip()
     # price = soup.select_one('.offers > div:nth-child(1) > div > div:nth-child(2) > div > div')
     # hotel.price = price.text if price is not None else None
     hotel.price = None
 
     # opinions
     num_opinions = soup.select_one('._1aRY8Wbl')
-    hotel.num_opinions = int(num_opinions.text.replace('.', '')) if num_opinions is not None else None
+    hotel.num_opinions = None if num_opinions is None else int(num_opinions.text.replace('.', ''))
     num_opinions_excellent = soup.select_one('._2lcHrbTn > li:nth-child(1) ._3fVK8yi6')
-    hotel.num_opinions_excellent = int(num_opinions_excellent.text.replace('.', '')) \
-        if num_opinions_excellent is not None else None
+    hotel.num_opinions_excellent = None if num_opinions_excellent is None else int(num_opinions_excellent.text
+                                                                                   .replace('.', ''))
+
     num_opinions_good = soup.select_one('._2lcHrbTn > li:nth-child(2) ._3fVK8yi6')
-    hotel.num_opinions_good = int(num_opinions_good.text.replace('.', '')) if num_opinions_good is not None else None
+    hotel.num_opinions_good = None if num_opinions_good is None else int(num_opinions_good.text.replace('.', ''))
     num_opinions_normal = soup.select_one('._2lcHrbTn > li:nth-child(3) ._3fVK8yi6')
-    hotel.num_opinions_normal = int(num_opinions_normal.text.replace('.', '')) \
-        if num_opinions_normal is not None else None
+    hotel.num_opinions_normal = None if num_opinions_normal is None else int(num_opinions_normal.text.replace('.', ''))
     num_opinions_bad = soup.select_one('._2lcHrbTn > li:nth-child(4) ._3fVK8yi6')
-    hotel.num_opinions_bad = int(num_opinions_bad.text.replace('.', '')) if num_opinions_bad is not None else None
+    hotel.num_opinions_bad = None if num_opinions_bad is None else int(num_opinions_bad.text.replace('.', ''))
     num_opinions_awful = soup.select_one('._2lcHrbTn > li:nth-child(5) ._3fVK8yi6')
-    hotel.num_opinions_awful = int(num_opinions_awful.text.replace('.', '')) if num_opinions_awful is not None else None
-    num_qa = soup.select('._1aRY8Wbl')[1]
-    hotel.num_qa = int(num_qa.text.replace('.', '')) if num_qa is not None else None
+    hotel.num_opinions_awful = None if num_opinions_awful is None else int(num_opinions_awful.text.replace('.', ''))
+    num_qa = soup.select('._1aRY8Wbl')
+    hotel.num_qa = None if len(num_qa) == 0 else int(num_qa[1].text.replace('.', ''))
 
     # nearby
     nearby = soup.select('.oPMurIUj')
-    hotel.nearby_restaurants = int(nearby[1].text.replace('.', '')) if nearby is not None else None
-    hotel.nearby_attractions = int(nearby[2].text.replace('.', '')) if nearby is not None else None
+    hotel.nearby_restaurants = None if len(nearby) == 0 else int(nearby[1].text.replace('.', ''))
+    hotel.nearby_attractions = None if len(nearby) == 0 else int(nearby[2].text.replace('.', ''))
 
     # location
     maps_url = soup.select_one('#LOCATION > div.TXBgG7JJ > span > img').get('src')
     [hotel.latitude, hotel.longitude] = get_coords_from_google_maps(maps_url)
     zone = get_about_info(about, 'ubicación')
-    zone = BeautifulSoup(re.sub(r'<span.*</span>', '>', zone), 'lxml') if zone is not None else None
-    hotel.zone = zone.text.split('>')[-1] if zone is not None else None
+    zone = None if zone is None else BeautifulSoup(re.sub(r'<span.*</span>', '>', zone), 'lxml')
+    hotel.zone = None if zone is None else zone.text.split('>')[-1]
 
     # services
     services = soup.select('._1nAmDotd')
-    property_services = services[0] if services is not None else None
-    room_services = services[1] if services is not None and len(services) > 1 else None
+    property_services = None if len(services) == 0 else services[0]
+    room_services = None if len(services) <= 1 else services[1]
     hotel.swimming_pool = hotel_has_service(property_services, 'piscina')
     hotel.bar = hotel_has_service(property_services, 'bar')
     hotel.restaurant = hotel_has_service(property_services, 'restaurant')
