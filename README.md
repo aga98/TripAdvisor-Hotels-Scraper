@@ -15,7 +15,7 @@ El repositorio contiene dos carpetas, analysis, dónde se pueden encontrar los f
 
 ## Para ejecutarlo
 
-### Instalar:
+### Instalar
 ```
 pip install beautifulsoup4
 pip install selenium
