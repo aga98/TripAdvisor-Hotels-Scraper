@@ -14,15 +14,15 @@ output:
 ---
 
 
-![Barcelona delimitada por distritos](./mapa_bcn.png)
+![Barcelona delimitada por distritos](./mapa_bcn_hoteles.jpg)
 
 
 # Descripción
 
-En el presente dataset se recogen una gran variedad de datos sobre los distintos hoteles repartidos a lo largo de la ciudad de Barcelona y alrededores como parte de la practica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster de Ciencia de datos de la UOC. 
+En el presente dataset se recogen una gran variedad de datos sobre los distintos hoteles repartidos a lo largo de la ciudad de Barcelona y alrededores como parte de la práctica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster de Ciencia de datos de la UOC. 
 
 
-En dicho dataset se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
+En dicho dataset se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
 
 # Contexto
 
@@ -57,7 +57,8 @@ A continuación, se muestra una lista de todas las variables recogidas para cada
 Algunas de los usos que se le podría dar a este dataset son: 
 
 - De los datos recolectados en el dataset se podría generar un informe con los hoteles mejor valorados por los usuarios para la concesión de premios, cómo el World Travel Award. 
-- También se podría utilizar para ver cómo están repartidos los hoteles a lo largo de la ciudad, de esta manera el Ayuntamiento de Barcelona podría desarrollar proyectos o dar licencias en áreas con una densidad de hoteles más baja para aumentar el turismo y generar más ingresos en dichas áreas.  
+- También se podría utilizar para ver cómo están repartidos los hoteles a lo largo de la ciudad, de esta manera el Ayuntamiento de Barcelona podría desarrollar proyectos o dar licencias en áreas con una densidad de hoteles más baja para aumentar el turismo y generar más ingresos en dichas áreas.
+- Imaginemos que una persona desea abrir un hotel en Barcelona. Gracias a este dataset podría descubir en qué zona tendría más potencial de éxito, qué servicios ofrecer que no sean ofrecidos por la competencia, etc. Además, podría predecir el rango de precios al que poner las habitaciones según las características del hotel basándose en los ya existentes en el dataset.
 
 
 # Licencia
