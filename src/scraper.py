@@ -4,7 +4,6 @@ from selenium.common.exceptions import StaleElementReferenceException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
-from sys import platform
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
 from datetime import datetime
@@ -15,21 +14,22 @@ import re
 URL = "https://www.tripadvisor.es/Hotels-g187497-Barcelona_Catalonia-Hotels.html"
 BASE_URL = "https://www.tripadvisor.es"
 
+choose_driver = True  # Choose location of the chrome driver. If False, it will get the look in PATH.
+# Specify driver location. Download compatible version for your system from https://chromedriver.chromium.org/downloads
+diver_path = '../drivers/windows/chromedriver.exe'
+
 # configure selenium driver. We we use Chrome as driver
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
 options.add_argument('--headless')
-# working with chrome version 86
-if platform == 'linux' or platform == 'linux2':  # linux
-    driver = webdriver.Chrome('../drivers/chromedriver_linux', chrome_options=options)
-    driver2 = webdriver.Chrome('../drivers/chromedriver_linux', chrome_options=options)
-elif platform == 'darwin':  # mac
-    driver = webdriver.Chrome('../drivers/chromedriver_mac', chrome_options=options)
-    driver2 = webdriver.Chrome('../drivers/chromedriver_mac', chrome_options=options)
-elif platform == 'win32':  # windows
-    driver = webdriver.Chrome('../drivers/chromedriver.exe', chrome_options=options)
-    driver2 = webdriver.Chrome('../drivers/chromedriver.exe', chrome_options=options)
+
+if choose_driver:
+    driver = webdriver.Chrome(diver_path, chrome_options=options)
+    driver2 = webdriver.Chrome(diver_path, chrome_options=options)
+else:
+    driver = webdriver.Chrome(chrome_options=options)
+    driver2 = webdriver.Chrome(chrome_options=options)
 
 
 # class to wait until next page of hotels is fully loaded --> checks for a change in CSS style
@@ -54,10 +54,11 @@ def get_coords_from_google_maps(url):
 
 # checks if the hotel has a service or not
 def hotel_has_service(services_div, service):
-    services = services_div.select('div')
-    for serv in services:
-        if service.lower() in serv.text.lower():
-            return True
+    if services_div is not None:
+        services = services_div.select('div')
+        for serv in services:
+            if service.lower() in serv.text.lower():
+                return True
     return False
 
 
@@ -97,8 +98,9 @@ def scrape_hotel(url):
     hotel.rooms = BeautifulSoup(rooms, 'lxml').text if rooms is not None else None
     price_range = get_about_info(about, 'rango de precios')
     hotel.price_range = BeautifulSoup(price_range, 'lxml').text.split('(')[0].strip()
-    price = soup.select_one('.offers > div:nth-child(1) > div > div:nth-child(2) > div > div')
-    hotel.price = price.text if price is not None else None
+    # price = soup.select_one('.offers > div:nth-child(1) > div > div:nth-child(2) > div > div')
+    # hotel.price = price.text if price is not None else None
+    hotel.price = None
 
     # opinions
     num_opinions = soup.select_one('._1aRY8Wbl')
@@ -131,13 +133,16 @@ def scrape_hotel(url):
     hotel.zone = zone.text.split('>')[-1] if zone is not None else None
 
     # services
-    hotel.swimming_pool = hotel_has_service(soup.select('._1nAmDotd')[0], 'piscina')
-    hotel.bar = hotel_has_service(soup.select('._1nAmDotd')[0], 'bar')
-    hotel.restaurant = hotel_has_service(soup.select('._1nAmDotd')[0], 'restaurant')
-    hotel.breakfast = hotel_has_service(soup.select('._1nAmDotd')[0], 'desayuno')
-    hotel.gym = hotel_has_service(soup.select('._1nAmDotd')[0], 'gimnasio')
-    hotel.admits_pets = hotel_has_service(soup.select('._1nAmDotd')[0], 'mascota')
-    hotel.air_conditioning = hotel_has_service(soup.select('._1nAmDotd')[1], 'aire')
+    services = soup.select('._1nAmDotd')
+    property_services = services[0] if services is not None else None
+    room_services = services[1] if services is not None and len(services) > 1 else None
+    hotel.swimming_pool = hotel_has_service(property_services, 'piscina')
+    hotel.bar = hotel_has_service(property_services, 'bar')
+    hotel.restaurant = hotel_has_service(property_services, 'restaurant')
+    hotel.breakfast = hotel_has_service(property_services, 'desayuno')
+    hotel.gym = hotel_has_service(property_services, 'gimnasio')
+    hotel.admits_pets = hotel_has_service(property_services, 'mascota')
+    hotel.air_conditioning = hotel_has_service(room_services, 'aire')
     hotel.date = datetime.today()
     return hotel
 
@@ -152,7 +157,8 @@ def scrape():
 
     hotels = []
     # iterate over all pages
-    for _ in range(total_pages):
+    for i in range(total_pages):
+        print('\n*********** Page', i+1, '/', total_pages, '***********')
         hotel_divs = soup.select('.ppr_priv_hsx_hotel_list_lite .photo-wrapper > a')
         hotel_urls = list({a.get('href') for a in hotel_divs})  # use a set since sponsored hotels can be duplicated
         # iterate over all hotels in a page
