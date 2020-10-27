@@ -77,6 +77,7 @@ Nos hemos ayudado de esta herramienta del CSIC (Consejo Superior de Investigacio
 
 # Recursos
 
+- Subirats, L., Calvo, M. (2018). Web Scraping. Editorial UOC.
 - https://www.20minutos.es/noticia/4131971/0/barcelona-bate-el-record-historico-al-acoger-a-12-millones-de-turistas-en-2019/
 - https://www.worldtravelawards.com/
 - http://bibliotecas.csic.es/es/node/300
