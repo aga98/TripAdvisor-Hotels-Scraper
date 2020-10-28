@@ -84,7 +84,8 @@ def scrape_hotel(url):
     soup = BeautifulSoup(html, 'lxml')
 
     # retrieve hotel attributes
-    name = soup.select_one('._1mTlpMC3').text
+    name = soup.select_one('._1mTlpMC3')
+    name = None if name is None else name.text
     hotel = Hotel(name)
     print(name)  # for debug
     stars = soup.select_one('._2aZlo29m')
@@ -162,14 +163,17 @@ def scrape():
         hotel_divs = soup.select('.ppr_priv_hsx_hotel_list_lite .photo-wrapper > a')
         hotel_urls = list({a.get('href') for a in hotel_divs})  # use a set since sponsored hotels can be duplicated
         # iterate over all hotels in a page
-        for url in hotel_urls:
-            hotel = scrape_hotel(url)
+        for hotel_url in hotel_urls:
+            hotel = scrape_hotel(hotel_url)
             hotels.append(hotel)
 
         # navigate to next page
-        button = driver.find_element_by_class_name("next")
-        button.click()
+        url = soup.select_one(".next")
+        url = None if url is None else BASE_URL + url.get('href')
+        if url is None:
+            break
 
+        driver.get(url)
         # wait until hotel list refreshes
         WebDriverWait(driver, 60).until(wait_for_style_property((By.ID, 'taplc_hotels_loading_box_0')))
         html = driver.page_source
