@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
@@ -14,7 +15,7 @@ import re
 URL = "https://www.tripadvisor.es/Hotels-g187497-Barcelona_Catalonia-Hotels.html"
 BASE_URL = "https://www.tripadvisor.es"
 
-choose_driver = True  # Choose location of the chrome driver. If False, it will get the look in PATH.
+choose_driver = True  # If True, it will get driver from specified path. If False, it will look in PATH.
 # Specify driver location. Download compatible version for your system from https://chromedriver.chromium.org/downloads
 diver_path = '../drivers/windows/chromedriver.exe'
 
@@ -47,9 +48,12 @@ class wait_for_style_property(object):
 
 # extracts coordinates from map image url
 def get_coords_from_google_maps(url):
-    parsed = urlparse.urlparse(url)
-    coords = parse_qs(parsed.query)['center'][0].split(',')
-    return [float(coords[0]), float(coords[1])]
+    if url is None:
+        return None
+    else:
+        parsed = urlparse.urlparse(url)
+        coords = parse_qs(parsed.query)['center'][0].split(',')
+        return [float(coords[0]), float(coords[1])]
 
 
 # checks if the hotel has a service or not
@@ -76,14 +80,19 @@ def get_about_info(about_div, info):
 def scrape_hotel(url):
     url = BASE_URL + url
     driver2.get(url)
-    # wait until map is loaded in order to get coordinates
-    WebDriverWait(driver2, 60).until(
-        ec.presence_of_element_located((By.CSS_SELECTOR, '#LOCATION > div.TXBgG7JJ > span > img'))
-    )
+
+    try:
+        # wait until map is loaded in order to get coordinates
+        WebDriverWait(driver2, 60).until(
+            ec.presence_of_element_located((By.CSS_SELECTOR, '#LOCATION > div.TXBgG7JJ > span > img'))
+        )
+    except TimeoutException:
+        pass
+
     html = driver2.page_source
     soup = BeautifulSoup(html, 'lxml')
 
-    # retrieve hotel attributes
+    # ****** retrieve hotel attributes ******
     name = soup.select_one('._1mTlpMC3')
     name = None if name is None else name.text
     hotel = Hotel(name)
@@ -154,7 +163,7 @@ def scrape():
     html = driver.page_source
     soup = BeautifulSoup(html, 'lxml')
     total_pages = int(soup.select('.pageNumbers a')[-1].get('data-page-number'))
-    # total_pages = 1  # for debug
+    total_pages = 10  # for debug
 
     hotels = []
     # iterate over all pages
@@ -170,6 +179,8 @@ def scrape():
         # navigate to next page
         url = soup.select_one(".next")
         url = None if url is None else BASE_URL + url.get('href')
+
+        # case when we are at last page, thus next page will not be valid
         if url is None:
             break
 
