@@ -1,5 +1,18 @@
 class Hotel:
     def __init__(self, name):
+        self.reception_24h = None
+        self.strongbox = None
+        self.suites = None
+        self.sea_views_rooms = None
+        self.non_smoking_rooms = None
+        self.landmarks_views_rooms = None
+        self.city_views_rooms = None
+        self.family_rooms = None
+        self.style = None
+        self.score_location = None
+        self.score_cleaning = None
+        self.score_service = None
+        self.score_value_money = None
         self.price = None
         self.price_range = None
         self.rooms = None
@@ -33,6 +46,10 @@ class Hotel:
              + 'Name: ' + self.name + '\n'
              + 'Stars: ' + str(self.stars) + '\n'
              + 'Score: ' + str(self.score) + '\n'
+             + 'Score Location: ' + str(self.score_location) + '\n'
+             + 'Score Cleaning: ' + str(self.score_cleaning) + '\n'
+             + 'Score Service: ' + str(self.score_service) + '\n'
+             + 'Score Value for Money: ' + str(self.score_value_money) + '\n'
              + 'Ranking_in_city: ' + str(self.ranking_in_city) + '\n'
              + 'Price: ' + str(self.price) + '\n'
              + 'Price Range: ' + str(self.price_range) + '\n'
@@ -54,8 +71,17 @@ class Hotel:
              + 'Breakfast: ' + str(self.breakfast) + '\n'
              + 'Gym: ' + str(self.gym) + '\n'
              + 'Admits_pets: ' + str(self.admits_pets) + '\n'
+             + 'Reception 24h: ' + str(self.reception_24h) + '\n'
+             + 'Strong box: ' + str(self.strongbox) + '\n'
              + 'Air_conditioning: ' + str(self.air_conditioning) + '\n'
              + 'Rooms: ' + str(self.rooms) + '\n'
+             + 'Suites: ' + str(self.suites) + '\n'
+             + 'Sea View rooms: ' + str(self.sea_views_rooms) + '\n'
+             + 'Non-smoking rooms: ' + str(self.non_smoking_rooms) + '\n'
+             + 'Landmark View rooms: ' + str(self.landmarks_views_rooms) + '\n'
+             + 'City View rooms: ' + str(self.city_views_rooms) + '\n'
+             + 'Family rooms: ' + str(self.family_rooms) + '\n'
+             + 'Style: ' + str(self.style) + '\n'
              + 'Date: ' + str(self.date) + '\n'
              + "------------------------------------------------------------\n")
         return s
