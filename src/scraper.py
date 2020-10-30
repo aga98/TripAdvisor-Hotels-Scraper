@@ -92,7 +92,8 @@ def get_price(offers):
     for offer in offers:
         # clean and avoid confusion with old prices
         pos = re.search(r'[a-zA-Z]', offer.text)
-        prices = offer.text[:pos.start()].replace('€', '').strip().split()
+        pos = len(offer.text) if pos is None else pos.start()
+        prices = offer.text[:pos].replace('€', '').strip().split()
         price = min([int(price) for price in prices])  # get price after sale
         price_offers.append(price)
     if len(price_offers) == 0:
@@ -174,7 +175,7 @@ def scrape_hotel(url):
     maps_url = None if maps_url is None else maps_url.get('src')
     [hotel.latitude, hotel.longitude] = get_coords_from_google_maps(maps_url)
     zone = soup.find('div', attrs={'class': '_39sLqIkw'}, text='UBICACIÓN')
-    zone = None if zone is None else BeautifulSoup(re.sub(r'<span.*</span>', '>', str(zone.next_sibling)))
+    zone = None if zone is None else BeautifulSoup(re.sub(r'<span.*</span>', '>', str(zone.next_sibling)), 'lxml')
     hotel.zone = None if zone is None else zone.text.split('>')[-1]
 
     # services
