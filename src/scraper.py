@@ -93,7 +93,7 @@ def get_price(offers):
         # clean and avoid confusion with old prices
         pos = re.search(r'[a-zA-Z]', offer.text)
         pos = len(offer.text) if pos is None else pos.start()
-        prices = offer.text[:pos].replace('€', '').strip().split()
+        prices = offer.text[:pos].replace('€', '').replace('.', '').strip().split()
         price = min([int(price) for price in prices])  # get price after sale
         price_offers.append(price)
     if len(price_offers) == 0:
