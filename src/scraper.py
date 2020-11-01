@@ -5,6 +5,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver import ActionChains
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
 from datetime import datetime
@@ -147,6 +148,21 @@ def scrape_hotel(url):
     hotel.price_range = None if price_range is None else price_range.next_sibling.text.split('(')[0].strip()
     style = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='ESTILO DEL HOTEL')
     hotel.style = None if style is None else style.next_sibling.text
+    languages = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='Idiomas que se hablan')
+    spoken_languages = None if languages is None else languages.next_sibling.text
+    if 'más' in spoken_languages:
+        menu = driver2.find_element_by_css_selector("._3l0ZMuFy")
+        ActionChains(driver2).move_to_element_with_offset(menu, 5, 5).perform()
+        tooltip = WebDriverWait(driver2, 10).until(
+            ec.presence_of_element_located((By.CSS_SELECTOR, 'div._1QF7P5TQ')))  # NO LE GUSTA....
+        print('tooltip', tooltip.get_attribute('innerHTML'))
+
+    # hotel.language_spanish = True if 'Español' in spoken_languages else False
+    # hotel.language_catalan = True if 'Catalán' in spoken_languages else False
+    # hotel.language_french = True if 'Francés' in spoken_languages else False
+    # hotel.language_english = True if 'Inglés' in spoken_languages else False
+    prat = soup.find('span', attrs={'class': '_1oeag8Dn'}, text='Aeropuerto de Barcelona-El Prat')
+    hotel.prat_distance = None if prat is None else prat.next_sibling.find('span', attrs={'class', 'number'}).text
 
     # opinions
     num_opinions = soup.select_one('._1aRY8Wbl')

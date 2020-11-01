@@ -42,6 +42,11 @@ def hotels_to_csv(hotels):
         'city_views_rooms': [hotel.city_views_rooms for hotel in hotels],
         'family_rooms': [hotel.family_rooms for hotel in hotels],
         'style': [hotel.style for hotel in hotels],
+        'language_spanish': [hotel.language_spanish for hotel in hotels],
+        'language_catalan': [hotel.language_catalan for hotel in hotels],
+        'language_french': [hotel.language_french for hotel in hotels],
+        'language_english': [hotel.language_english for hotel in hotels],
+        'prat_distance': [hotel.prat_distance for hotel in hotels],
         'timestamp': [hotel.date for hotel in hotels],
     }
     columns = list(data.keys())
