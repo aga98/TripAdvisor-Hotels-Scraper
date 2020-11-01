@@ -148,19 +148,26 @@ def scrape_hotel(url):
     hotel.price_range = None if price_range is None else price_range.next_sibling.text.split('(')[0].strip()
     style = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='ESTILO DEL HOTEL')
     hotel.style = None if style is None else style.next_sibling.text
-    languages = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='Idiomas que se hablan')
-    spoken_languages = None if languages is None else languages.next_sibling.text
-    if 'más' in spoken_languages:
-        menu = driver2.find_element_by_css_selector("._3l0ZMuFy")
-        ActionChains(driver2).move_to_element_with_offset(menu, 5, 5).perform()
-        tooltip = WebDriverWait(driver2, 10).until(
-            ec.presence_of_element_located((By.CSS_SELECTOR, 'div._1QF7P5TQ')))  # NO LE GUSTA....
-        print('tooltip', tooltip.get_attribute('innerHTML'))
 
-    # hotel.language_spanish = True if 'Español' in spoken_languages else False
-    # hotel.language_catalan = True if 'Catalán' in spoken_languages else False
-    # hotel.language_french = True if 'Francés' in spoken_languages else False
-    # hotel.language_english = True if 'Inglés' in spoken_languages else False
+    # languages
+    languages = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='Idiomas que se hablan')
+    langs_in_parent = False if languages is None else languages.parent.has_attr('data-ssrev-handlers')
+    all_langages = '' if languages is None or not langs_in_parent else str(languages.parent.get('data-ssrev-handlers'))
+
+    # spoken_languages = None if languages is None else languages.next_sibling.text
+    # if 'más' in spoken_languages:
+    #     menu = driver2.find_element_by_css_selector("._3l0ZMuFy")
+    #     ActionChains(driver2).move_to_element_with_offset(menu, 5, 5).perform()
+    #     tooltip = WebDriverWait(driver2, 10).until(
+    #         ec.presence_of_element_located((By.CSS_SELECTOR, '._1QF7P5TQ')))  # NO LE GUSTA....
+    #     print('tooltip', tooltip.get_attribute('innerHTML'))
+
+    hotel.language_spanish = 'Español' in all_langages
+    hotel.language_catalan = 'Catalán' in all_langages
+    hotel.language_french = 'Francés' in all_langages
+    hotel.language_english = 'Inglés' in all_langages
+    hotel.language_italian = 'Italiano' in all_langages
+
     prat = soup.find('span', attrs={'class': '_1oeag8Dn'}, text='Aeropuerto de Barcelona-El Prat')
     hotel.prat_distance = None if prat is None else prat.next_sibling.find('span', attrs={'class', 'number'}).text
 

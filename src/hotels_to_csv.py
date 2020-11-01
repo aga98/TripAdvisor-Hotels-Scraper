@@ -46,6 +46,7 @@ def hotels_to_csv(hotels):
         'language_catalan': [hotel.language_catalan for hotel in hotels],
         'language_french': [hotel.language_french for hotel in hotels],
         'language_english': [hotel.language_english for hotel in hotels],
+        'language_italian': [hotel.language_italian for hotel in hotels],
         'prat_distance': [hotel.prat_distance for hotel in hotels],
         'timestamp': [hotel.date for hotel in hotels],
     }
