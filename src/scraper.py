@@ -138,6 +138,9 @@ def scrape_hotel(url):
     hotel.score_value_money = None if score_value_money is None else bubbles_2_score(score_value_money.previous_sibling)
     ranking_in_city = soup.select_one('.rank')
     hotel.ranking_in_city = None if ranking_in_city is None else int(ranking_in_city.text[4:].replace('.', ''))
+    tripadvisor_clasification = soup.find(
+        'div', attrs={'class': '_1aFljvmJ _3-bnwfDe _3o5Wgg7v'}).text[15:]
+    hotel.tripadvisor_clasification = None if tripadvisor_clasification is None else tripadvisor_clasification
 
     # prices and more info
     prices = soup.select('.bookableOffer')
@@ -167,6 +170,9 @@ def scrape_hotel(url):
     hotel.language_french = 'Francés' in all_langages
     hotel.language_english = 'Inglés' in all_langages
     hotel.language_italian = 'Italiano' in all_langages
+    hotel.language_portuguese = 'Portugués' in all_langages
+    hotel.language_bulgarian = 'Búlgaro' in all_langages
+    hotel.language_russian = 'Ruso' in all_langages
 
     prat = soup.find('span', attrs={'class': '_1oeag8Dn'}, text='Aeropuerto de Barcelona-El Prat')
     hotel.prat_distance = None if prat is None else prat.next_sibling.find('span', attrs={'class', 'number'}).text
