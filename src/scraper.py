@@ -138,9 +138,8 @@ def scrape_hotel(url):
     hotel.score_value_money = None if score_value_money is None else bubbles_2_score(score_value_money.previous_sibling)
     ranking_in_city = soup.select_one('.rank')
     hotel.ranking_in_city = None if ranking_in_city is None else int(ranking_in_city.text[4:].replace('.', ''))
-    tripadvisor_clasification = soup.find(
-        'div', attrs={'class': '_1aFljvmJ _3-bnwfDe _3o5Wgg7v'}).text[15:]
-    hotel.tripadvisor_clasification = None if tripadvisor_clasification is None else tripadvisor_clasification
+    tripadvisor_clasification = soup.find('div', attrs={'class': '_1aFljvmJ _3-bnwfDe _3o5Wgg7v'})
+    hotel.tripadvisor_clasification = None if tripadvisor_clasification is None else tripadvisor_clasification.text[15:]
 
     # prices and more info
     prices = soup.select('.bookableOffer')
@@ -156,14 +155,6 @@ def scrape_hotel(url):
     languages = soup.find('div', attrs={'class': '_2jJmIDsg'}, text='Idiomas que se hablan')
     langs_in_parent = False if languages is None else languages.parent.has_attr('data-ssrev-handlers')
     all_langages = '' if languages is None or not langs_in_parent else str(languages.parent.get('data-ssrev-handlers'))
-
-    # spoken_languages = None if languages is None else languages.next_sibling.text
-    # if 'más' in spoken_languages:
-    #     menu = driver2.find_element_by_css_selector("._3l0ZMuFy")
-    #     ActionChains(driver2).move_to_element_with_offset(menu, 5, 5).perform()
-    #     tooltip = WebDriverWait(driver2, 10).until(
-    #         ec.presence_of_element_located((By.CSS_SELECTOR, '._1QF7P5TQ')))  # NO LE GUSTA....
-    #     print('tooltip', tooltip.get_attribute('innerHTML'))
 
     hotel.language_spanish = 'Español' in all_langages
     hotel.language_catalan = 'Catalán' in all_langages
