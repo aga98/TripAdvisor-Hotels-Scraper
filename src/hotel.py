@@ -1,5 +1,15 @@
 class Hotel:
     def __init__(self, name):
+        self.tripadvisor_clasification = None
+        self.language_portuguese = None
+        self.language_russian = None
+        self.language_bulgarian = None
+        self.language_italian = None
+        self.prat_distance = None
+        self.language_spanish = None
+        self.language_catalan = None
+        self.language_french = None
+        self.language_english = None
         self.reception_24h = None
         self.strongbox = None
         self.suites = None
@@ -82,6 +92,16 @@ class Hotel:
              + 'City View rooms: ' + str(self.city_views_rooms) + '\n'
              + 'Family rooms: ' + str(self.family_rooms) + '\n'
              + 'Style: ' + str(self.style) + '\n'
+             + 'tripadvisor_clasification: ' + str(self.tripadvisor_clasification) + '\n'
+             + 'Language Spanish: ' + str(self.language_spanish) + '\n'
+             + 'Language Catalan: ' + str(self.language_catalan) + '\n'
+             + 'Language French: ' + str(self.language_french) + '\n'
+             + 'Language English: ' + str(self.language_english) + '\n'
+             + 'Language Italian: ' + str(self.language_italian) + '\n'
+             + 'Language Bulgarian: ' + str(self.language_bulgarian) + '\n'
+             + 'Language Russian: ' + str(self.language_russian) + '\n'
+             + 'Language Portuguese: ' + str(self.language_portuguese) + '\n'
+             + 'Airport El Prat distance: ' + str(self.prat_distance) + '\n'
              + 'Date: ' + str(self.date) + '\n'
              + "------------------------------------------------------------\n")
         return s
