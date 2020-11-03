@@ -22,12 +22,12 @@ output:
 En el presente dataset se recogen una gran variedad de datos sobre los distintos hoteles repartidos a lo largo de la ciudad de Barcelona y alrededores como parte de la práctica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster de Ciencia de datos de la UOC. 
 
 
-En dicho dataset se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
+En dicho dataset, compuesto por más de 1500 muestras, se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
 
 # Contexto
 
 Barcelona es una de las principales ciudades turísticas de España llegando a recibir hasta 12 millones de turistas el pasado año. Gracias a esto, el sector hotelero es uno de los sectores más importantes de la ciudad generando millones de euros para la ciudad y sus habitantes. Por esto, creímos que sería interesante indagar más sobre el tema y para ello decidimos extraer datos de los hoteles a través de una de las webs de reserva hotelera más utilizadas a escala global, Tripadvisor. 
-Tripadvisor es la plataforma de viajes más grande del mundo, la cual proporciona información, opiniones y comentarios sobre alojamientos, restaurantes, experiencias, vuelos, etc. Además, en comparación con otras páginas de la competencia, Tripadvisor era la que ofrecía mayor cantidad de información y por lo tanto la que creímos más adecuada para nuestro proyecto.
+Tripadvisor es la plataforma de viajes más grande del mundo, la cual proporciona información, opiniones y comentarios sobre alojamientos, restaurantes, experiencias, vuelos, etc. Además, en comparación con otras páginas de la competencia, la página web de Tripadvisor está provista de más herramientas que sus competidores para conseguir la interacción del usuario, cómo foros de viajes, premios basados en las reseñas de los huéspedes... Esto hace que ofrezca una mayor cantidad de información sobre instalaciones, experiencias de usuario etc. Por ello creímos que su web sería la más adecuada para nuestro proyecto. 
 
 
 # Contenido
@@ -90,13 +90,10 @@ A continuación, se muestra una lista de todas las variables recogidas para cada
 
 La fecha de recogida de estos datos fue el 2 de noviembre de 2020.
 
-# Agradecimientos
-
-
 
 # Inspiración
 
-Algunas de los usos que se le podría dar a este dataset son: 
+Cómo se ha mencionado anteriormente el sector hostelero mueve mucho dinero en la ciudad de Barcelona y proporciona empleo a gran parte de su población de forma directa e indirecta. Por estos y otros muchos motivos este dataset podría ayudar en las siguientes situaciones:  
 
 - De los datos recolectados en el dataset se podría generar un informe con los hoteles mejor valorados por los usuarios para la concesión de premios, cómo el World Travel Award. 
 
@@ -107,6 +104,8 @@ Algunas de los usos que se le podría dar a este dataset son:
 - Imaginemos que una persona desea abrir un hotel en Barcelona. Gracias a este dataset podría descubir en qué zona tendría más potencial de éxito, qué servicios ofrecer que no sean ofrecidos por la competencia, etc. Además, podría predecir el rango de precios al que poner las habitaciones según las características del hotel basándose en los ya existentes en el dataset.
 
 - Supongamos que somos unos turistas rusos y queremos encontrar un hotel que hable este idioma en Barcelona. Desde la web de Tripadvisor no hay ningún filtro de idioma, por lo que el turista debería entrar en todos los hoteles para ver si hablan o no ruso. Sin embargo, en nuestro dataset podemos filtrar por idioma, de forma que esta tarea se agiliza mucho más.
+
+- En la denominada por los medios cómo primera ola de la pandemia que todavía nos afecta hoy en día, se utilizaron hoteles para albergar pacientes Covid y así rebajar la presión que había en los hospitales. Este dataset nos podría ayudar a establecer una lista de hoteles cercanos a los centros hospitalarios que pudieran dar soporte albergando a pacientes de los hospitales ya que conocemos la ubicación y el número de camas de cada hotel. 
 
 
 # Licencia
@@ -122,6 +121,8 @@ Nos hemos ayudado de esta herramienta del CSIC (Consejo Superior de Investigacio
 
 - http://bibliotecas.csic.es/es/node/300 
 
+# Agradecimientos
+Queremos agradecer a todos los hostales, apartamentos, hoteles y cadenas hoteleras de la ciudad de Barcelona y alrededores que han publicado su alojamiento en la web Tripadvisor. A su vez también queremos agradecer a todos los usuarios de Tripadvisor y huéspedes por las reseñas y comentarios publicados. 
 
 # Recursos
 
