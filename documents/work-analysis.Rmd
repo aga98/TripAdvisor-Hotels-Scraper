@@ -22,19 +22,29 @@ output:
 En el presente dataset se recogen una gran variedad de datos sobre los distintos hoteles repartidos a lo largo de la ciudad de Barcelona y alrededores como parte de la práctica 1 de la asignatura Tipología y ciclo de vida de los datos del Máster de Ciencia de datos de la UOC. 
 
 
-En dicho dataset se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
+En dicho dataset, compuesto por más de 1500 muestras, se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
 
 # Contexto
 
-Barcelona es una de las principales ciudades turísticas de España llegando a recibir hasta 12 millones de turistas el pasado año. Gracias a esto, el sector hotelero es uno de los sectores más importantes de la ciudad generando millones de euros para la ciudad y sus habitantes. Por esto, creímos que sería interesante indagar más sobre el tema y para ello decidimos extraer datos de los hoteles a través de una de las webs de reserva hotelera más utilizadas a escala global, Tripadvisor.  
+Barcelona es una de las principales ciudades turísticas de España llegando a recibir hasta 12 millones de turistas el pasado año. Gracias a esto, el sector hotelero es uno de los sectores más importantes de la ciudad generando millones de euros para la ciudad y sus habitantes. Por esto, creímos que sería interesante indagar más sobre el tema y para ello decidimos extraer datos de los hoteles a través de una de las webs de reserva hotelera más utilizadas a escala global, Tripadvisor. 
+Tripadvisor es la plataforma de viajes más grande del mundo, la cual proporciona información, opiniones y comentarios sobre alojamientos, restaurantes, experiencias, vuelos, etc. Además, en comparación con otras páginas de la competencia, la página web de Tripadvisor está provista de más herramientas que sus competidores para conseguir la interacción del usuario, cómo foros de viajes, premios basados en las reseñas de los huéspedes... Esto hace que ofrezca una mayor cantidad de información sobre instalaciones, experiencias de usuario etc. Por ello creímos que su web sería la más adecuada para nuestro proyecto. 
 
 
 # Contenido
 
+Los hoteles se han extraido de Tripadvisor, concretamente a partir de la URL base https://www.tripadvisor.es/Hotels-g187497-Barcelona_Catalonia-Hotels.html, la cual contiene los hoteles situados en Barcelona y en sus inmediaciones. Los datos han sido recopilados usando la técnica de web scraping utilizando el lenguaje Python, y concretamente las librerías Beautiful Soup y Selenium. 
+
+El procedimiento seguido para obtener la información de todos los hoteles ha sido realizar el scraping de todas las páginas (66 en total) y extraer los datos de cada uno de los hoteles mostrados en cada una de ellas, los cuales hemos exportado a CSV.
+
 A continuación, se muestra una lista de todas las variables recogidas para cada hotel y que forman el dataset: 
 
 - Name: Nombre del Hotel 
-- Stars: Calificación del hotel, entre 1 y 5 estrellas 
+- Stars: Estrellas del hotel, entre 1 y 5 estrellas
+- Score: Calificación del hotel según los usuarios.
+- Score Location: Calificación de la ubicación del hotel según los usuarios (de 1.0 a 5.0).
+- Score Cleaning: Calificación de la limpieza del hotel según los usuarios (de 1.0 a 5.0).
+- Score Service: Calificación del servicio del hotel según los usuarios (de 1.0 a 5.0).
+- Score Value for Money: Calificación de la relación calidad/precio del hotel según los usuarios (de 1.0 a 5.0).
 - Price: Precio actual por noche del hotel 
 - Price Range: Rango de precios por noche en el que se encuentra el hotel
 - Ranking: Ranking Tripadvisor del hotel respecto a otro hoteles de la ciudad 
@@ -47,26 +57,55 @@ A continuación, se muestra una lista de todas las variables recogidas para cada
 - Number QA: Número de preguntas y respuestas de los usuarios
 - Nearby restaurants: Número de restaurantes cercanos al hotel 
 - Nearby attractions: Número de atracciones turísticas cercanas al hotel 
-- Zona: Zona en la que se sitúa el hotel 
+- Zone: Zona en la que se sitúa el hotel 
 - Latitude/Longitude: Latitud y longitud del hotel 
 - Swimming pool: Nos dice si el hotel dispone de este servicio 
 - Bar: Nos dice si el hotel dispone de este servicio 
 - Restaurant: Nos dice si el hotel dispone de este servicio 
 - Breakfast: Nos dice si el hotel dispone de este servicio 
 - Gym: Nos dice si el hotel dispone de este servicio 
+- Reception 24h: Nos dice si el hotel dispone de este servicio 
 - Admit pets: Nos dice si el hotel dispone de este servicio 
 - Air conditioning: Nos dice si el hotel dispone de este servicio
+- Strong box: Nos dice si el hotel dispone de este servicio 
 - Rooms: Número de habitaciones del hotel
+- Suites: Nos dice si el hotel dispone de este tipo de habitaciones
+- Sea View Rooms: Nos dice si el hotel dispone de este tipo de habitaciones
+- Non-smoking Rooms: Nos dice si el hotel dispone de este tipo de habitaciones
+- Landmark View Rooms: Nos dice si el hotel dispone de este tipo de habitaciones
+- City View Rooms: Nos dice si el hotel dispone de este tipo de habitaciones
+- Family Rooms: Nos dice si el hotel dispone de este tipo de habitaciones
+- Style: Estilo del hotel
+- Tripadvisor Clasification: Calificación de Tripadvisor sobre la facilidad de realizar actividades y encontrar restaurantes a corta distancia del hotel.
+- Language Spanish: Indica si el hotel habla este idioma o no
+- Language Catalan: Indica si el hotel habla este idioma o no
+- Language French: Indica si el hotel habla este idioma o no
+- Language English: Indica si el hotel habla este idioma o no
+- Language Italian: Indica si el hotel habla este idioma o no
+- Language Bulgarian: Indica si el hotel habla este idioma o no
+- Language Russian: Indica si el hotel habla este idioma o no
+- Language Portuguese: Indica si el hotel habla este idioma o no
+- Prat Distance: Distancia en kilómetros al aeropuerto del Prat
 - Timestamp: Fecha/hora de recogida de los datos 
+
+La fecha de recogida de estos datos fue el 2 de noviembre de 2020.
 
 
 # Inspiración
 
-Algunas de los usos que se le podría dar a este dataset son: 
+Cómo se ha mencionado anteriormente el sector hostelero mueve mucho dinero en la ciudad de Barcelona y proporciona empleo a gran parte de su población de forma directa e indirecta. Por estos y otros muchos motivos este dataset podría ayudar en las siguientes situaciones:  
 
 - De los datos recolectados en el dataset se podría generar un informe con los hoteles mejor valorados por los usuarios para la concesión de premios, cómo el World Travel Award. 
+
 - También se podría utilizar para ver cómo están repartidos los hoteles a lo largo de la ciudad, de esta manera el Ayuntamiento de Barcelona podría desarrollar proyectos o dar licencias en áreas con una densidad de hoteles más baja para aumentar el turismo y generar más ingresos en dichas áreas.
+
+- También podría ser interesante realizar algún tipo de algoritmo de clasificación. Por ejemplo, debido a la situación actual del COVID en la cual muchos hoteles están teniendo importantes pérdidas, se podrían clasificar los hoteles según su riesgo económico para así fomentar ayudas a aquellos con un riesgo mayor.
+
 - Imaginemos que una persona desea abrir un hotel en Barcelona. Gracias a este dataset podría descubir en qué zona tendría más potencial de éxito, qué servicios ofrecer que no sean ofrecidos por la competencia, etc. Además, podría predecir el rango de precios al que poner las habitaciones según las características del hotel basándose en los ya existentes en el dataset.
+
+- Supongamos que somos unos turistas rusos y queremos encontrar un hotel que hable este idioma en Barcelona. Desde la web de Tripadvisor no hay ningún filtro de idioma, por lo que el turista debería entrar en todos los hoteles para ver si hablan o no ruso. Sin embargo, en nuestro dataset podemos filtrar por idioma, de forma que esta tarea se agiliza mucho más.
+
+- En la denominada por los medios cómo primera ola de la pandemia que todavía nos afecta hoy en día, se utilizaron hoteles para albergar pacientes Covid y así rebajar la presión que había en los hospitales. Este dataset nos podría ayudar a establecer una lista de hoteles cercanos a los centros hospitalarios que pudieran dar soporte albergando a pacientes de los hospitales ya que conocemos la ubicación y el número de camas de cada hotel. 
 
 
 # Licencia
@@ -82,6 +121,8 @@ Nos hemos ayudado de esta herramienta del CSIC (Consejo Superior de Investigacio
 
 - http://bibliotecas.csic.es/es/node/300 
 
+# Agradecimientos
+Queremos agradecer a todos los hostales, apartamentos, hoteles y cadenas hoteleras de la ciudad de Barcelona y alrededores que han publicado su alojamiento en la web Tripadvisor. A su vez también queremos agradecer a todos los usuarios de Tripadvisor y huéspedes por las reseñas y comentarios publicados. 
 
 # Recursos
 
