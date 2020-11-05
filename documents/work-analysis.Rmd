@@ -122,7 +122,11 @@ Nos hemos ayudado de esta herramienta del CSIC (Consejo Superior de Investigacio
 - http://bibliotecas.csic.es/es/node/300 
 
 # Agradecimientos
-Queremos agradecer a todos los hostales, apartamentos, hoteles y cadenas hoteleras de la ciudad de Barcelona y alrededores que han publicado su alojamiento en la web Tripadvisor. A su vez también queremos agradecer a todos los usuarios de Tripadvisor y huéspedes por las reseñas y comentarios publicados. 
+Queremos agradecer a todos los hostales, apartamentos, hoteles y cadenas hoteleras de la ciudad de Barcelona y alrededores que han publicado su alojamiento en la web Tripadvisor. A su vez, también queremos agradecer a todos los usuarios de Tripadvisor y huéspedes por las reseñas y comentarios publicados. 
+
+También hemos encontrado referencias de otras investigaciones que se han realizado a través de scraping en la web de Tripadvisor. Por ejemplo, el *TripAdvisor Annotated Dataset* (http://nemis.isti.cnr.it/~marcheggiani/datasets/), el cual se centra en las opiniones de los clientes y recoge las valoraciones que les dan a los diferentes aspectos del hotel (habitaciones, limpieza, ubicación, etc.), a parte de la propio comentario, tiene el objetivo de clasificar estas opiniones según sean positivas, negativas o neutrales. 
+
+Otro estudio parecido de la universidad de Illinois (https://www.cs.virginia.edu/~hw5x/paper/rp166f-wang.pdf), estudia el problema de análisis de texto con opinión, llamado *Latent Aspect Rating Analysis (LARA)*, el cual intenta descubrir la opinión latente de cada persona sobre los diferentes aspectos, así como el énfasis que ponen en cada uno al construir una opinión general. Estos datos fueron recogidos de Tripadvisor durante el año 2009.
 
 # Recursos
 
