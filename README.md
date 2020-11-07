@@ -48,4 +48,8 @@ python main.py
 ## Integrantes
 Equipo formado por Alberto Giménez Aragón y Maite Gracia Moises.
 
+## DOI
+
+A modo de nota, el dataset publicado en el repositorio Zenodo es una simulación de los datos reales para no infringir las políticas de contenido de la web sobre la que se ha basado la práctica.
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4256762.svg)](https://doi.org/10.5281/zenodo.4256762)
