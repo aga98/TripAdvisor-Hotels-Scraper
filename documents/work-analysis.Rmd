@@ -24,10 +24,18 @@ En el presente dataset se recogen una gran variedad de datos sobre los distintos
 
 En dicho dataset, compuesto por más de 1500 muestras, se han guardado las distintas variables como son el nombre del hotel, precio por noche o ubicación de este entre otras características. Se puede encontrar la lista entera detallada en el apartado Contenido de este documento. 
 
+A modo de nota, el dataset publicado en el repositorio Zenodo es una simulación de los datos reales para no infringir las políticas de contenido de la web sobre la que se ha basado la práctica.
+
+DOI:
+[![DOI](./zenodo.4256762.png)](https://doi.org/10.5281/zenodo.4256762)
+
+
 # Contexto
 
-Barcelona es una de las principales ciudades turísticas de España llegando a recibir hasta 12 millones de turistas el pasado año. Gracias a esto, el sector hotelero es uno de los sectores más importantes de la ciudad generando millones de euros para la ciudad y sus habitantes. Por esto, creímos que sería interesante indagar más sobre el tema y para ello decidimos extraer datos de los hoteles a través de una de las webs de reserva hotelera más utilizadas a escala global, Tripadvisor. 
-Tripadvisor es la plataforma de viajes más grande del mundo, la cual proporciona información, opiniones y comentarios sobre alojamientos, restaurantes, experiencias, vuelos, etc. Además, en comparación con otras páginas de la competencia, la página web de Tripadvisor está provista de más herramientas que sus competidores para conseguir la interacción del usuario, cómo foros de viajes, premios basados en las reseñas de los huéspedes... Esto hace que ofrezca una mayor cantidad de información sobre instalaciones, experiencias de usuario etc. Por ello creímos que su web sería la más adecuada para nuestro proyecto. 
+Barcelona es una de las principales ciudades turísticas de España llegando a recibir hasta 12 millones de turistas el pasado año. Gracias a esto, el sector hotelero es uno de los más importantes de la capital de Cataluña generando millones de euros para la ciudad y sus habitantes. Por esto, creímos que sería interesante indagar más sobre el tema y para ello decidimos extraer datos de los hoteles a través de una de las webs de reserva hotelera más utilizadas a escala global, Tripadvisor. 
+
+
+Tripadvisor es la plataforma de viajes más grande del mundo, la cual proporciona información, opiniones y comentarios sobre alojamientos, restaurantes, experiencias, vuelos, etc. Además, en comparación con otras páginas de la competencia, la página web de Tripadvisor está provista de más herramientas que sus competidores para conseguir la interacción del usuario, cómo foros de viajes, premios basados en las reseñas de los huéspedes... Esto hace que ofrezca una mayor cantidad de información sobre instalaciones, experiencias de usuario etc
 
 
 # Contenido
@@ -121,7 +129,9 @@ Nos hemos ayudado de esta herramienta del CSIC (Consejo Superior de Investigacio
 
 - http://bibliotecas.csic.es/es/node/300 
 
+
 # Agradecimientos
+
 Queremos agradecer a todos los hostales, apartamentos, hoteles y cadenas hoteleras de la ciudad de Barcelona y alrededores que han publicado su alojamiento en la web Tripadvisor. A su vez, también queremos agradecer a todos los usuarios de Tripadvisor y huéspedes por las reseñas y comentarios publicados. 
 
 También hemos encontrado referencias de otras investigaciones que se han realizado a través de scraping en la web de Tripadvisor. Por ejemplo, el *TripAdvisor Annotated Dataset* (http://nemis.isti.cnr.it/~marcheggiani/datasets/), el cual se centra en las opiniones de los clientes y recoge las valoraciones que les dan a los diferentes aspectos del hotel (habitaciones, limpieza, ubicación, etc.), a parte de la propio comentario, tiene el objetivo de clasificar estas opiniones según sean positivas, negativas o neutrales. 
